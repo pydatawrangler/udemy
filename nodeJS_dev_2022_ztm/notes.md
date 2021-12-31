@@ -35,3 +35,4 @@ https://github.com/odziem/multiplayer-pong
 - Type `.exit` to exit node.
 - Extensions for VS Code:
   - Visual Studio IntelliCode
+- Emojies: https://getemoji.com/#animals-nature
