@@ -32,7 +32,18 @@ https://github.com/odziem/multiplayer-pong
 
 ## More
 
+### General
+
 - Type `.exit` to exit node.
 - Extensions for VS Code:
   - Visual Studio IntelliCode
 - Emojies: https://getemoji.com/#animals-nature
+- `require` looks for javascript files so you do not need to include the **.js**. see also `require.extensions`.
+
+### Section 4
+
+- CommonJS modules: https://nodejs.org/api/modules.html#modules_modules_commonjs_modules
+- ESM `import`: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+- ESM `export`: https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export
+- Ryan Dahl's - _10 things I regret about Node.js_: https://www.youtube.com/watch?v=M3BM9TB-8yA
+- How the `require` function finds modules: https://nodejs.org/api/modules.html#modules_all_together
