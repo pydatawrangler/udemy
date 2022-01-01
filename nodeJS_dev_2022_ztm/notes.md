@@ -47,3 +47,18 @@ https://github.com/odziem/multiplayer-pong
 - ESM `export`: https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export
 - Ryan Dahl's - _10 things I regret about Node.js_: https://www.youtube.com/watch?v=M3BM9TB-8yA
 - How the `require` function finds modules: https://nodejs.org/api/modules.html#modules_all_together
+
+### Section 5
+
+- Node Package Manager website: https://www.npmjs.com/
+- type `npm init -y` to initialize a package folder with defaults
+- Semantic Versioning: MAJOR.MINOR.PATCH - https://semver.org/
+  1. MAJOR version when you make incompatible API changes,
+  2. MINOR version when you add functionality in a backwards compatible manner, and
+  3. PATCH version when you make backwards compatible bug fixes.
+- npm semantic version calculator: https://semver.npmjs.com/
+  - for a 0 MAJOR version, then the the MINOR becomes the MAJOR.
+- `nodemon` monitors for changes.
+- **In general, Don't install NPM Packages Glocally**
+
+### Sections 21 (how JS works) and 22 (async JS):
