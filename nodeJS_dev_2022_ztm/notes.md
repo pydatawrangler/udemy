@@ -61,4 +61,9 @@ https://github.com/odziem/multiplayer-pong
 - `nodemon` monitors for changes.
 - **In general, Don't install NPM Packages Glocally**
 
-### Sections 21 (how JS works) and 22 (async JS):
+### Section 22 (async JS):
+
+- `catch` statement will only run if error occurs in code before it.
+- link to https://jsonplaceholder.typicode.com
+- solution to `ReferenceError: fetch is not defined` is at this stack overflow link: https://stackoverflow.com/questions/48433783/referenceerror-fetch-is-not-defined (the `fetch` API is not implemented in NodeJS).
+- **NEED TO LEARN MORE ABOUT ASYNC-AWAIT IN NODEJS AND JS**
