@@ -67,3 +67,7 @@ https://github.com/odziem/multiplayer-pong
 - link to https://jsonplaceholder.typicode.com
 - solution to `ReferenceError: fetch is not defined` is at this stack overflow link: https://stackoverflow.com/questions/48433783/referenceerror-fetch-is-not-defined (the `fetch` API is not implemented in NodeJS).
 - **NEED TO LEARN MORE ABOUT ASYNC-AWAIT IN NODEJS AND JS**
+
+### Section 6
+
+-
