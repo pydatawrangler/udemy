@@ -1,0 +1,1 @@
+Purchased the course on 12/29/2022.
