@@ -1,3 +1,6 @@
+# Project Specific
+example_transcript_files/
+
 # Logs
 logs
 *.log
