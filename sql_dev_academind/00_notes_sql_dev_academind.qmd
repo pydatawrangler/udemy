@@ -1,0 +1,17 @@
+---
+title: "Notes for SQL - The Complete Developer's Guide by Academind"
+format: html
+---
+
+## PostgreSQL Installation
+
+Postgresql Official Documentation: [**https://www.postgresql.org/docs/**](https://www.postgresql.org/docs/)
+
+Common Postgresql tasks: <https://academind.com/tutorials/postgresql-start-stop-uninstall-upgrade-server/>
+
+superuser name: `postgres`
+
+superuser password: `learnsql`
+
+pgadmin password: `learnsql1`
+
