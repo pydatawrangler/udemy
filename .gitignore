@@ -1,5 +1,6 @@
 # Project Specific
 example_transcript_files/
+*/.vscode/
 
 # Logs
 logs
