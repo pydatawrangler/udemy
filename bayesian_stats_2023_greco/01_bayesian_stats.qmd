@@ -1,0 +1,24 @@
+---
+title: "Untitled"
+format: 
+    html:
+        self-contained: true
+---
+
+## Section 2.0
+
+All the numerators combined include the denominator in Bayes formula.
+
+Playing around with LaTeX:
+
+$P(x_i|y) = \frac{1}{\sqrt{2\pi \sigma_y^2}}$
+
+## Section 3.0
+
+Everything has probability zero in a continuous distribution.
+
+For a uniform distribution $\pi(\theta)$ is 1
+
+$\pi({0.5}) = \int_{0}^{0.5}\pi(\theta)\, \mathrm{d}\theta = 0.5$
+
+**Stopped at lecture #16 in Section 3.0**
