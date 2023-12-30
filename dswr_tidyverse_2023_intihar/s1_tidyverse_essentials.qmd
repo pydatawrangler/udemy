@@ -1,0 +1,89 @@
+---
+title: "Section 1 - Tidyverse Essentials"
+format: 
+    html:
+        self-contained: true
+        toc: true
+        number-sections: true
+---
+
+## `select()` and `rename()`
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+# help("mpg")
+df <- mpg
+View(df)
+print(df)
+str(df)
+nrow(df);ncol(df)
+```
+
+### `select`
+
+```{r}
+df.car.info <- select(df, manufacturer, model, year)
+```
+
+```{r}
+select(df, starts_with(match="m"))
+```
+
+```{r}
+select(df, contains("r"))
+```
+
+```{r}
+select(df, ends_with("y"))
+```
+
+```{r}
+select(df, 1:3)
+select(df, c(2, 5, 7))
+select(df, (ncol(df)-2):ncol(df))
+```
+
+### `rename`
+
+```{r}
+df1 <- rename(df,
+    mnfc = manufacturer,
+    mdl = model
+)
+```
+
+```{r}
+df1 <- select(df, 
+    mnfc=manufacturer,
+    mod=model,
+    everything()
+    )
+```
+
+## `mutate` and `transmute`
+
+### `mutate`
+
+```{r}
+df <- mutate(df, `avg miles per gallon` = (cty + hwy) / 2)
+```
+
+```{r}
+df <- mutate(df,
+        car = paste(manufacturer, model, sep=" "),
+        `cyl / trans` = paste(cyl, " cylinders", " / ", trans, " transmission", sep="")
+)
+```
+
+### `transmute`
+
+```{r}
+df2 <- transmute(df,
+        `avg miles per gallon` = (cty + hwy) / 2,
+        `cyl / trans` = paste(cyl, " cylinders", " / ", trans, " transmission", sep="")
+)
+head(df2)
+```
