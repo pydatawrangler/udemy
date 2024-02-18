@@ -3075,6 +3075,22 @@ vertical-align: -.125em;
   <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate"><span class="header-section-number">2.1</span> <code>mutate</code></a></li>
   <li><a href="#transmute" id="toc-transmute" class="nav-link" data-scroll-target="#transmute"><span class="header-section-number">2.2</span> <code>transmute</code></a></li>
   </ul></li>
+  <li><a href="#filter-slice" id="toc-filter-slice" class="nav-link" data-scroll-target="#filter-slice"><span class="header-section-number">3</span> <code>filter / slice</code></a>
+  <ul class="collapse">
+  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter"><span class="header-section-number">3.1</span> <code>filter</code></a></li>
+  <li><a href="#slice" id="toc-slice" class="nav-link" data-scroll-target="#slice"><span class="header-section-number">3.2</span> <code>slice</code></a></li>
+  </ul></li>
+  <li><a href="#arrange" id="toc-arrange" class="nav-link" data-scroll-target="#arrange"><span class="header-section-number">4</span> <code>arrange</code></a></li>
+  <li><a href="#distinct" id="toc-distinct" class="nav-link" data-scroll-target="#distinct"><span class="header-section-number">5</span> <code>distinct</code></a></li>
+  <li><a href="#sample-rows" id="toc-sample-rows" class="nav-link" data-scroll-target="#sample-rows"><span class="header-section-number">6</span> Sample rows</a></li>
+  <li><a href="#summarise" id="toc-summarise" class="nav-link" data-scroll-target="#summarise"><span class="header-section-number">7</span> <code>summarise</code></a></li>
+  <li><a href="#group_by-and-count" id="toc-group_by-and-count" class="nav-link" data-scroll-target="#group_by-and-count"><span class="header-section-number">8</span> <code>group_by()</code> and <code>count()</code></a>
+  <ul class="collapse">
+  <li><a href="#group_by" id="toc-group_by" class="nav-link" data-scroll-target="#group_by"><span class="header-section-number">8.1</span> <code>group_by()</code></a></li>
+  <li><a href="#count" id="toc-count" class="nav-link" data-scroll-target="#count"><span class="header-section-number">8.2</span> <code>count()</code></a></li>
+  </ul></li>
+  <li><a href="#pipe-operator" id="toc-pipe-operator" class="nav-link" data-scroll-target="#pipe-operator"><span class="header-section-number">9</span> Pipe operator</a></li>
+  <li><a href="#rotate-columns---pivoting" id="toc-rotate-columns---pivoting" class="nav-link" data-scroll-target="#rotate-columns---pivoting"><span class="header-section-number">10</span> Rotate columns - pivoting</a></li>
   </ul>
 </nav>
 </div>
@@ -3328,6 +3344,513 @@ vertical-align: -.125em;
 </div>
 </div>
 </section>
+</section>
+<section id="filter-slice" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="filter-slice"><span class="header-section-number">3</span> <code>filter / slice</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> mpg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="filter" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="filter"><span class="header-section-number">3.1</span> <code>filter</code></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, manufacturer <span class="sc">==</span> <span class="st">&quot;audi&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 18 × 11
+   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
+ 2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
+ 3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
+ 4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
+ 5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
+ 6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
+ 7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
+ 8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
+ 9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
+10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
+11 audi         a4 quattro   2    2008     4 auto… 4        19    27 p     comp…
+12 audi         a4 quattro   2.8  1999     6 auto… 4        15    25 p     comp…
+13 audi         a4 quattro   2.8  1999     6 manu… 4        17    25 p     comp…
+14 audi         a4 quattro   3.1  2008     6 auto… 4        17    25 p     comp…
+15 audi         a4 quattro   3.1  2008     6 manu… 4        15    25 p     comp…
+16 audi         a6 quattro   2.8  1999     6 auto… 4        15    24 p     mids…
+17 audi         a6 quattro   3.1  2008     6 auto… 4        17    25 p     mids…
+18 audi         a6 quattro   4.2  2008     8 auto… 4        16    23 p     mids…</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, manufacturer <span class="sc">==</span> <span class="st">&quot;audi&quot;</span> <span class="sc">&amp;</span> year <span class="sc">==</span> <span class="dv">1999</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 11
+  manufacturer model      displ  year   cyl trans  drv     cty   hwy fl    class
+  &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+1 audi         a4           1.8  1999     4 auto(… f        18    29 p     comp…
+2 audi         a4           1.8  1999     4 manua… f        21    29 p     comp…
+3 audi         a4           2.8  1999     6 auto(… f        16    26 p     comp…
+4 audi         a4           2.8  1999     6 manua… f        18    26 p     comp…
+5 audi         a4 quattro   1.8  1999     4 manua… 4        18    26 p     comp…
+6 audi         a4 quattro   1.8  1999     4 auto(… 4        16    25 p     comp…
+7 audi         a4 quattro   2.8  1999     6 auto(… 4        15    25 p     comp…
+8 audi         a4 quattro   2.8  1999     6 manua… 4        17    25 p     comp…
+9 audi         a6 quattro   2.8  1999     6 auto(… 4        15    24 p     mids…</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, manufacturer <span class="sc">==</span> <span class="st">&quot;audi&quot;</span> <span class="sc">|</span> manufacturer <span class="sc">==</span> <span class="st">&quot;dodge&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 55 × 11
+   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
+ 2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
+ 3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
+ 4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
+ 5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
+ 6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
+ 7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
+ 8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
+ 9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
+10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
+# ℹ 45 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, hwy <span class="sc">&gt;=</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 26 × 11
+   manufacturer model  displ  year   cyl trans     drv     cty   hwy fl    class
+   &lt;chr&gt;        &lt;chr&gt;  &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;     &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 audi         a4       2    2008     4 manual(m… f        20    31 p     comp…
+ 2 audi         a4       2    2008     4 auto(av)  f        21    30 p     comp…
+ 3 chevrolet    malibu   2.4  2008     4 auto(l4)  f        22    30 r     mids…
+ 4 honda        civic    1.6  1999     4 manual(m… f        28    33 r     subc…
+ 5 honda        civic    1.6  1999     4 auto(l4)  f        24    32 r     subc…
+ 6 honda        civic    1.6  1999     4 manual(m… f        25    32 r     subc…
+ 7 honda        civic    1.6  1999     4 auto(l4)  f        24    32 r     subc…
+ 8 honda        civic    1.8  2008     4 manual(m… f        26    34 r     subc…
+ 9 honda        civic    1.8  2008     4 auto(l5)  f        25    36 r     subc…
+10 honda        civic    1.8  2008     4 auto(l5)  f        24    36 c     subc…
+# ℹ 16 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, year <span class="sc">!=</span> <span class="dv">1999</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 117 × 11
+   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 audi         a4           2    2008     4 manu… f        20    31 p     comp…
+ 2 audi         a4           2    2008     4 auto… f        21    30 p     comp…
+ 3 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
+ 4 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
+ 5 audi         a4 quattro   2    2008     4 auto… 4        19    27 p     comp…
+ 6 audi         a4 quattro   3.1  2008     6 auto… 4        17    25 p     comp…
+ 7 audi         a4 quattro   3.1  2008     6 manu… 4        15    25 p     comp…
+ 8 audi         a6 quattro   3.1  2008     6 auto… 4        17    25 p     mids…
+ 9 audi         a6 quattro   4.2  2008     8 auto… 4        16    23 p     mids…
+10 chevrolet    c1500 sub…   5.3  2008     8 auto… r        14    20 r     suv  
+# ℹ 107 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="slice" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="slice"><span class="header-section-number">3.2</span> <code>slice</code></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(df, <span class="dv">20</span><span class="sc">:</span><span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 × 11
+   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 chevrolet    c1500 sub…   5.3  2008     8 auto… r        11    15 e     suv  
+ 2 chevrolet    c1500 sub…   5.3  2008     8 auto… r        14    20 r     suv  
+ 3 chevrolet    c1500 sub…   5.7  1999     8 auto… r        13    17 r     suv  
+ 4 chevrolet    c1500 sub…   6    2008     8 auto… r        12    17 r     suv  
+ 5 chevrolet    corvette     5.7  1999     8 manu… r        16    26 p     2sea…
+ 6 chevrolet    corvette     5.7  1999     8 auto… r        15    23 p     2sea…
+ 7 chevrolet    corvette     6.2  2008     8 manu… r        16    26 p     2sea…
+ 8 chevrolet    corvette     6.2  2008     8 auto… r        15    25 p     2sea…
+ 9 chevrolet    corvette     7    2008     8 manu… r        15    24 p     2sea…
+10 chevrolet    k1500 tah…   5.3  2008     8 auto… 4        14    19 r     suv  
+11 chevrolet    k1500 tah…   5.3  2008     8 auto… 4        11    14 e     suv  </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(df, (<span class="fu">nrow</span>(df)<span class="sc">-</span><span class="dv">9</span>)<span class="sc">:</span><span class="fu">nrow</span>(df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 11
+   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 volkswagen   new beetle   2    1999     4 auto… f        19    26 r     subc…
+ 2 volkswagen   new beetle   2.5  2008     5 manu… f        20    28 r     subc…
+ 3 volkswagen   new beetle   2.5  2008     5 auto… f        20    29 r     subc…
+ 4 volkswagen   passat       1.8  1999     4 manu… f        21    29 p     mids…
+ 5 volkswagen   passat       1.8  1999     4 auto… f        18    29 p     mids…
+ 6 volkswagen   passat       2    2008     4 auto… f        19    28 p     mids…
+ 7 volkswagen   passat       2    2008     4 manu… f        21    29 p     mids…
+ 8 volkswagen   passat       2.8  1999     6 auto… f        16    26 p     mids…
+ 9 volkswagen   passat       2.8  1999     6 manu… f        18    26 p     mids…
+10 volkswagen   passat       3.6  2008     6 auto… f        17    26 p     mids…</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="arrange" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="arrange"><span class="header-section-number">4</span> <code>arrange</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(df, <span class="fu">desc</span>(year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 234 × 11
+   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 audi         a4           2    2008     4 manu… f        20    31 p     comp…
+ 2 audi         a4           2    2008     4 auto… f        21    30 p     comp…
+ 3 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
+ 4 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
+ 5 audi         a4 quattro   2    2008     4 auto… 4        19    27 p     comp…
+ 6 audi         a4 quattro   3.1  2008     6 auto… 4        17    25 p     comp…
+ 7 audi         a4 quattro   3.1  2008     6 manu… 4        15    25 p     comp…
+ 8 audi         a6 quattro   3.1  2008     6 auto… 4        17    25 p     mids…
+ 9 audi         a6 quattro   4.2  2008     8 auto… 4        16    23 p     mids…
+10 chevrolet    c1500 sub…   5.3  2008     8 auto… r        14    20 r     suv  
+# ℹ 224 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>df.sort <span class="ot">&lt;-</span> <span class="fu">arrange</span>(df, year, <span class="fu">desc</span>(cyl), displ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="distinct" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="distinct"><span class="header-section-number">5</span> <code>distinct</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>df.example <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;john&quot;</span>, <span class="st">&quot;max&quot;</span>, <span class="st">&quot;julia&quot;</span>))</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>df.example <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(df.example, <span class="fu">slice</span>(df.example, <span class="dv">2</span>))</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>df.example <span class="ot">&lt;-</span> <span class="fu">arrange</span>(df.example, id)</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>df.example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id  name
+1  1  john
+2  2   max
+3  2   max
+4  3 julia</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(df.example)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id  name
+1  1  john
+2  2   max
+3  3 julia</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>df.dupl <span class="ot">&lt;-</span> <span class="fu">select</span>(df, manufacturer, model)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>df.nodupl <span class="ot">&lt;-</span> <span class="fu">distinct</span>(df.dupl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sample-rows" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="sample-rows"><span class="header-section-number">6</span> Sample rows</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">567</span>)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample_n</span>(df, <span class="at">size=</span><span class="dv">10</span>, <span class="at">replace=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 11
+   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 mercury      mountaine…   5    1999     8 auto… 4        13    17 r     suv  
+ 2 chevrolet    corvette     7    2008     8 manu… r        15    24 p     2sea…
+ 3 dodge        ram 1500 …   4.7  2008     8 manu… 4        12    16 r     pick…
+ 4 toyota       land crui…   4.7  1999     8 auto… 4        11    15 r     suv  
+ 5 volkswagen   jetta        2    1999     4 auto… f        19    26 r     comp…
+ 6 dodge        caravan 2…   3.8  1999     6 auto… f        15    21 r     mini…
+ 7 honda        civic        1.8  2008     4 auto… f        25    36 r     subc…
+ 8 ford         mustang      4.6  1999     8 auto… r        15    21 r     subc…
+ 9 chevrolet    c1500 sub…   5.3  2008     8 auto… r        14    20 r     suv  
+10 ford         expeditio…   5.4  1999     8 auto… r        11    17 r     suv  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample_n</span>(df, <span class="at">size=</span><span class="dv">10</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 11
+   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 chevrolet    c1500 sub…   5.3  2008     8 auto… r        11    15 e     suv  
+ 2 volkswagen   gti          2    2008     4 auto… f        22    29 p     comp…
+ 3 dodge        dakota pi…   4.7  2008     8 auto… 4        14    19 r     pick…
+ 4 ford         explorer …   4.6  2008     8 auto… 4        13    19 r     suv  
+ 5 dodge        caravan 2…   3.8  2008     6 auto… f        16    23 r     mini…
+ 6 chevrolet    k1500 tah…   5.3  2008     8 auto… 4        14    19 r     suv  
+ 7 dodge        durango 4…   5.2  1999     8 auto… 4        11    16 r     suv  
+ 8 toyota       camry        2.4  2008     4 manu… f        21    31 r     mids…
+ 9 toyota       camry        3    1999     6 manu… f        18    26 r     mids…
+10 subaru       impreza a…   2.2  1999     4 auto… 4        21    26 r     subc…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample_frac</span>(df, <span class="fl">0.5</span><span class="sc">*</span><span class="fu">nrow</span>(df)<span class="sc">/</span><span class="fu">nrow</span>(df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 117 × 11
+   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 toyota       corolla      1.8  2008     4 manu… f        28    37 r     comp…
+ 2 lincoln      navigator…   5.4  1999     8 auto… r        11    17 r     suv  
+ 3 honda        civic        1.6  1999     4 auto… f        24    32 r     subc…
+ 4 audi         a6 quattro   2.8  1999     6 auto… 4        15    24 p     mids…
+ 5 nissan       pathfinde…   4    2008     6 auto… 4        14    20 p     suv  
+ 6 toyota       camry        3.5  2008     6 auto… f        19    28 r     mids…
+ 7 subaru       impreza a…   2.5  2008     4 auto… 4        20    25 p     comp…
+ 8 toyota       toyota ta…   3.4  1999     6 auto… 4        15    19 r     pick…
+ 9 audi         a4 quattro   3.1  2008     6 manu… 4        15    25 p     comp…
+10 toyota       corolla      1.8  1999     4 manu… f        26    35 r     comp…
+# ℹ 107 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample_frac</span>(df, <span class="fl">0.1</span>, <span class="at">replace=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 23 × 11
+   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 nissan       altima       2.5  2008     4 auto… f        23    31 r     mids…
+ 2 chevrolet    malibu       3.6  2008     6 auto… f        17    26 r     mids…
+ 3 volkswagen   passat       3.6  2008     6 auto… f        17    26 p     mids…
+ 4 volkswagen   jetta        2    2008     4 manu… f        21    29 p     comp…
+ 5 nissan       maxima       3    1999     6 auto… f        18    26 r     mids…
+ 6 chevrolet    malibu       3.5  2008     6 auto… f        18    29 r     mids…
+ 7 hyundai      sonata       3.3  2008     6 auto… f        19    28 r     mids…
+ 8 pontiac      grand prix   3.8  2008     6 auto… f        18    28 r     mids…
+ 9 dodge        dakota pi…   3.7  2008     6 manu… 4        15    19 r     pick…
+10 subaru       impreza a…   2.5  2008     4 auto… 4        20    25 p     comp…
+# ℹ 13 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="summarise" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="summarise"><span class="header-section-number">7</span> <code>summarise</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(df, <span class="st">`</span><span class="at">mean hwy</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(hwy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  `mean hwy`
+       &lt;dbl&gt;
+1       23.4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(df,</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">rows =</span> <span class="fu">n</span>(),</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">nr models</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">n_distinct</span>(model)</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>          )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+   rows `nr models`
+  &lt;int&gt;       &lt;int&gt;
+1   234          38</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(df,</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">min hwy</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">min</span>(hwy),</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">min cty</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">min</span>(cty),</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">max hwy</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">max</span>(hwy),</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">max cty</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">max</span>(cty)</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>          )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+  `min hwy` `min cty` `max hwy` `max cty`
+      &lt;int&gt;     &lt;int&gt;     &lt;int&gt;     &lt;int&gt;
+1        12         9        44        35</code></pre>
+</div>
+</div>
+</section>
+<section id="group_by-and-count" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="group_by-and-count"><span class="header-section-number">8</span> <code>group_by()</code> and <code>count()</code></h2>
+<p>With <code>group_by()</code>, <code>summarize</code> is applied over each grouping.</p>
+<section id="group_by" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="group_by"><span class="header-section-number">8.1</span> <code>group_by()</code></h3>
+<p>Can group with one or more grouping variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 234 × 11
+   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
+ 2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
+ 3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
+ 4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
+ 5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
+ 6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
+ 7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
+ 8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
+ 9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
+10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
+# ℹ 224 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(df, manufacturer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 234 × 11
+# Groups:   manufacturer [15]
+   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
+ 2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
+ 3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
+ 4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
+ 5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
+ 6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
+ 7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
+ 8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
+ 9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
+10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
+# ℹ 224 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="fu">group_by</span>(df, manufacturer),</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">cars =</span> <span class="fu">n</span>(),</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>          )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 2
+   manufacturer  cars
+   &lt;chr&gt;        &lt;int&gt;
+ 1 audi            18
+ 2 chevrolet       19
+ 3 dodge           37
+ 4 ford            25
+ 5 honda            9
+ 6 hyundai         14
+ 7 jeep             8
+ 8 land rover       4
+ 9 lincoln          3
+10 mercury          4
+11 nissan          13
+12 pontiac          5
+13 subaru          14
+14 toyota          34
+15 volkswagen      27</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>df.group_model <span class="ot">&lt;-</span> <span class="fu">group_by</span>(df, model)</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(df.group_model,</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">min hwy</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">min</span>(hwy),</span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">min cty</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">min</span>(cty),</span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">max hwy</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">max</span>(hwy),</span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">max cty</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">max</span>(cty)</span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>          )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 38 × 5
+   model              `min hwy` `min cty` `max hwy` `max cty`
+   &lt;chr&gt;                  &lt;int&gt;     &lt;int&gt;     &lt;int&gt;     &lt;int&gt;
+ 1 4runner 4wd               17        14        20        16
+ 2 a4                        26        16        31        21
+ 3 a4 quattro                25        15        28        20
+ 4 a6 quattro                23        15        25        17
+ 5 altima                    26        19        32        23
+ 6 c1500 suburban 2wd        15        11        20        14
+ 7 camry                     26        18        31        21
+ 8 camry solara              26        18        31        22
+ 9 caravan 2wd               17        11        24        18
+10 civic                     29        21        36        28
+# ℹ 28 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="count" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="count"><span class="header-section-number">8.2</span> <code>count()</code></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+      n
+  &lt;int&gt;
+1   234</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(df, model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 38 × 2
+   model                  n
+   &lt;chr&gt;              &lt;int&gt;
+ 1 4runner 4wd            6
+ 2 a4                     7
+ 3 a4 quattro             8
+ 4 a6 quattro             3
+ 5 altima                 6
+ 6 c1500 suburban 2wd     5
+ 7 camry                  7
+ 8 camry solara           7
+ 9 caravan 2wd           11
+10 civic                  9
+# ℹ 28 more rows</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="pipe-operator" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="pipe-operator"><span class="header-section-number">9</span> Pipe operator</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(manufacturer <span class="sc">==</span> <span class="st">&quot;audi&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+      n
+  &lt;int&gt;
+1    18</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(manufacturer <span class="sc">==</span> <span class="st">&quot;dodge&quot;</span> <span class="sc">|</span> manufacturer <span class="sc">==</span> <span class="st">&quot;chevrolet&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(manufacturer, model, year, class)</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(manufacturer, model, class, trans) <span class="sc">%&gt;%</span> </span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="st">`</span><span class="at">avg hwy</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(hwy),</span>
+<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">cars =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb80-9"><a href="#cb80-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb80-10"><a href="#cb80-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">avg hwy</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="dv">30</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb80-11"><a href="#cb80-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">avg hwy</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by &#39;manufacturer&#39;, &#39;model&#39;, &#39;class&#39;. You can
+override using the `.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 6
+   manufacturer model      class      trans      `avg hwy`  cars
+   &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;int&gt;
+ 1 honda        civic      subcompact auto(l5)        36       2
+ 2 toyota       corolla    compact    manual(m5)      36       2
+ 3 toyota       corolla    compact    auto(l4)        34       2
+ 4 volkswagen   new beetle subcompact manual(m5)      33.7     3
+ 5 volkswagen   new beetle subcompact auto(l4)        33.5     2
+ 6 honda        civic      subcompact auto(l4)        32       2
+ 7 honda        civic      subcompact manual(m5)      32       4
+ 8 volkswagen   jetta      compact    manual(m5)      31.5     4
+ 9 audi         a4         compact    manual(m6)      31       1
+10 toyota       camry      midsize    auto(l5)        31       1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(manufacturer, model, class, trans) <span class="sc">%&gt;%</span> </span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="st">`</span><span class="at">avg hwy</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(hwy),</span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">cars =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ungroup() %&gt;% </span></span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">avg hwy</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="dv">30</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">avg hwy</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by &#39;manufacturer&#39;, &#39;model&#39;, &#39;class&#39;. You can
+override using the `.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 6
+# Groups:   manufacturer, model, class [6]
+   manufacturer model      class      trans      `avg hwy`  cars
+   &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;int&gt;
+ 1 honda        civic      subcompact auto(l5)        36       2
+ 2 toyota       corolla    compact    manual(m5)      36       2
+ 3 toyota       corolla    compact    auto(l4)        34       2
+ 4 volkswagen   new beetle subcompact manual(m5)      33.7     3
+ 5 volkswagen   new beetle subcompact auto(l4)        33.5     2
+ 6 honda        civic      subcompact auto(l4)        32       2
+ 7 honda        civic      subcompact manual(m5)      32       4
+ 8 volkswagen   jetta      compact    manual(m5)      31.5     4
+ 9 audi         a4         compact    manual(m6)      31       1
+10 toyota       camry      midsize    auto(l5)        31       1</code></pre>
+</div>
+</div>
+</section>
+<section id="rotate-columns---pivoting" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="rotate-columns---pivoting"><span class="header-section-number">10</span> Rotate columns - pivoting</h2>
 </section>
 
 </main>

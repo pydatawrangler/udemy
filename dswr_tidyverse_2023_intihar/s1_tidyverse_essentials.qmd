@@ -87,3 +87,229 @@ df2 <- transmute(df,
 )
 head(df2)
 ```
+
+## `filter / slice`
+
+```{r}
+df <- mpg
+```
+
+### `filter`
+
+```{r}
+filter(df, manufacturer == "audi")
+```
+```{r}
+filter(df, manufacturer == "audi" & year == 1999)
+```
+
+```{r}
+filter(df, manufacturer == "audi" | manufacturer == "dodge")
+```
+
+```{r}
+filter(df, hwy >= 30)
+```
+
+```{r}
+filter(df, year != 1999)
+```
+
+### `slice`
+
+```{r}
+slice(df, 20:30)
+```
+
+```{r}
+slice(df, (nrow(df)-9):nrow(df))
+```
+
+## `arrange`
+
+```{r}
+arrange(df, desc(year))
+```
+
+```{r}
+df.sort <- arrange(df, year, desc(cyl), displ)
+```
+
+## `distinct`
+
+```{r}
+df.example <- data.frame(id = 1:3,
+                         name = c("john", "max", "julia"))
+
+df.example <- bind_rows(df.example, slice(df.example, 2))
+df.example <- arrange(df.example, id)
+df.example
+
+distinct(df.example)
+```
+
+```{r}
+df.dupl <- select(df, manufacturer, model)
+
+df.nodupl <- distinct(df.dupl)
+```
+
+## Sample rows
+
+```{r}
+set.seed(567)
+sample_n(df, size=10, replace=FALSE)
+
+sample_n(df, size=10, replace=TRUE)
+
+sample_frac(df, 0.5*nrow(df)/nrow(df))
+
+sample_frac(df, 0.1, replace=FALSE)
+```
+
+## `summarise`
+
+```{r}
+summarize(df, `mean hwy` = mean(hwy))
+
+summarize(df,
+          rows = n(),
+          `nr models` = n_distinct(model)
+          )
+
+summarize(df,
+          `min hwy` = min(hwy),
+          `min cty` = min(cty),
+          `max hwy` = max(hwy),
+          `max cty` = max(cty)
+          )
+```
+
+## `group_by()` and `count()`
+
+With `group_by()`, `summarize` is applied over each grouping.
+
+### `group_by()`
+
+Can group with one or more grouping variables.
+
+```{r}
+df
+
+group_by(df, manufacturer)
+
+summarize(group_by(df, manufacturer),
+          cars = n(),
+          )
+
+df.group_model <- group_by(df, model)
+
+summarize(df.group_model,
+          `min hwy` = min(hwy),
+          `min cty` = min(cty),
+          `max hwy` = max(hwy),
+          `max cty` = max(cty)
+          )
+```
+
+### `count()`
+
+```{r}
+count(df)
+
+count(df, model)
+```
+
+## Pipe operator
+
+```{r}
+df %>% 
+  filter(manufacturer == "audi") %>% 
+  count()
+
+df1 <- df %>% 
+  filter(manufacturer == "dodge" | manufacturer == "chevrolet") %>% 
+  select(manufacturer, model, year, class)
+
+df %>%
+  group_by(manufacturer, model, class, trans) %>% 
+  summarize(`avg hwy` = mean(hwy),
+            cars = n()) %>%
+  ungroup() %>% 
+  filter(`avg hwy` > 30) %>% 
+  arrange(desc(`avg hwy`))
+```
+```{r}
+df %>%
+  group_by(manufacturer, model, class, trans) %>% 
+  summarize(`avg hwy` = mean(hwy),
+            cars = n()) %>%
+  # ungroup() %>% 
+  filter(`avg hwy` > 30) %>% 
+  arrange(desc(`avg hwy`))
+```
+
+## Rotate columns - pivoting
+
+```{r}
+table.long <- data.frame(id=1:6,
+                         type=c("a", "b", "a", "c", "c", "a"),
+                         count=c(20, 50, 45, 15, 12, 5))
+table.long
+
+table.wide <- pivot_wider(table.long,
+                          names_from = type,
+                          values_from = count)
+table.wide
+
+table.long1 <- pivot_longer(table.wide,
+                            cols = c("a", "b", "c"),
+                            names_to = "type",
+                            values_to = "count",
+                            values_drop_na = TRUE)
+table.long1
+```
+```{r}
+df.long <- df %>% 
+  filter(manufacturer == "jeep" | manufacturer == "land rover" | manufacturer == "hyundai") %>% 
+  select(model, trans, hwy) %>% 
+  group_by(model, trans) %>% 
+  summarize(`avg hwy` = mean(hwy)) %>% 
+  ungroup()
+df.long
+
+df.wide <- df.long %>% 
+  pivot_wider(names_from = trans, values_from = `avg hwy`)
+df.wide
+
+df.long1 <- df.wide %>% 
+  pivot_longer(-model,
+               names_to = "trans",
+               values_to = "avg hwy",
+               values_drop_na = TRUE)
+df.long1
+```
+
+## Separate & unite columns
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
