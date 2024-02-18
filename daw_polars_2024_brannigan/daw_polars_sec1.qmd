@@ -1,0 +1,117 @@
+---
+title: Section 1
+subtitle: Data Analysis with Polars
+format:
+  html:
+    self-contained: true
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .qmd
+      format_name: quarto
+      format_version: '1.0'
+      jupytext_version: 1.15.1
+  kernelspec:
+    display_name: 'Python [conda env:eda]'
+    language: python
+    name: conda-env-eda-py
+---
+
+## Polars Quick Start
+
+```{python}
+import polars as pl
+```
+
+```{python}
+csvFile = "data/titanic.csv"
+```
+
+```{python}
+df = pl.read_csv(csvFile)
+df
+```
+
+```{python}
+df.head()
+```
+
+Polar dataframes do not have an index
+
+```{python}
+df.glimpse()
+```
+
+```{python}
+df[:3, ["Pclass", "Name", "Age"]]
+```
+
+```{python}
+(
+    df
+    .select(
+        [
+            pl.col("Pclass"),
+            pl.col("Name").str.to_lowercase(),
+            pl.col("Age").round(2)
+        ]
+    )
+)
+```
+
+```{python}
+(
+    df
+    .groupby(["Survived", "Pclass"])
+    .agg(
+        pl.col("PassengerId").count().alias("counts")
+    )
+    
+)
+```
+
+```{python}
+import plotly.express as px
+```
+
+```{python}
+px.scatter(
+    x = df["Age"],
+    y = df["Fare"]
+)
+```
+
+```{python}
+print(
+    pl.scan_csv(csvFile)
+    .group_by(["Survived", "Pclass"])
+    .agg(
+        pl.col("PassengerId").count().alias("counts")
+    )
+    .explain()
+)
+```
+
+### Streaming
+
+```{python}
+(
+    pl.scan_csv(csvFile)
+    .group_by(["Survived", "Pclass"])
+    .agg(
+        pl.col("PassengerId").count().alias("counts")
+    )
+    .collect(streaming=True)
+)
+```
+
+## Lazy mode: Introducing lazy mode
+
+Went through `intro/02-EagerAndLazyPolars.ipynb`
+
+## Lazy mode: evaluating queries
+
+Went through `intro/03-LazyPolarsEvaluating.ipynb`
+
+## Introduction to Data types
+

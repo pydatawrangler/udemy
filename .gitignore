@@ -1,6 +1,8 @@
 # Project Specific
 example_transcript_files/
 */.vscode/
+*.gz
+daw_polars_2024_brannigan/polars-materials/
 
 # Logs
 logs
