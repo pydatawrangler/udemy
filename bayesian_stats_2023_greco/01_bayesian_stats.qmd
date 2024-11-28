@@ -21,4 +21,24 @@ For a uniform distribution $\pi(\theta)$ is 1
 
 $\pi({0.5}) = \int_{0}^{0.5}\pi(\theta)\, \mathrm{d}\theta = 0.5$
 
-**Stopped at lecture #16 in Section 3.0**
+## More Fun with LaTeX
+
+$$
+\cos (2\theta) = \cos^2 \theta - \sin^2 \theta
+$$
+
+$\lim\limits_{x \to \infty} \exp(-x) = 0$
+
+$\sqrt{\frac{a}{b}}$
+
+$\int_0^\infty \mathrm{e}^{-x}\,\mathrm{d}x$
+
+$$
+A_{m,n} = 
+ \begin{pmatrix}
+  a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
+  a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
+  \vdots  & \vdots  & \ddots & \vdots  \\
+  a_{m,1} & a_{m,2} & \cdots & a_{m,n} 
+ \end{pmatrix}
+$$

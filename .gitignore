@@ -4,6 +4,7 @@ example_transcript_files/
 *.gz
 daw_polars_2024_brannigan/polars-materials/
 target/
+/rust_2024_paskhaver/learn-to-code-with-rust-main
 
 # Logs
 logs
